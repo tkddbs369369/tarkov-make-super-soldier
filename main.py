@@ -78,7 +78,7 @@ while True:
         except:
             pass
         if i == 2:
-            time.sleep(0.6)
+            time.sleep(2)
             pydirectinput.moveRel(0, 1000, relative=True, )
             pg.press('g')
             time.sleep(2)
