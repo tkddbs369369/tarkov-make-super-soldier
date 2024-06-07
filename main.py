@@ -56,19 +56,19 @@ while True:
         pg.keyDown('space')
         pg.keyDown('shift')
         time.sleep(0.1)
-        for i in a:
+        for z in a:
             pydirectinput.moveRel(1000, 0, relative=True)
-            time.sleep(0.001)
+
         pg.keyUp('shift')
         pg.keyUp('w')
         pg.keyUp('space')
         time.sleep(1)
-        for i in range(1, 11):
-            if i % 2 == 0:
+        for f in range(1, 11):
+            if f % 2 == 0:
                 pg.keyDown('w')
                 time.sleep(3)
                 pg.keyUp('w')
-            if i % 2 == 1:
+            if f % 2 == 1:
                 pg.keyDown('s')
                 time.sleep(3)
                 pg.keyUp('s')
@@ -77,10 +77,14 @@ while True:
             break
         except:
             pass
+        print(i)
         if i == 2:
             time.sleep(2)
             pydirectinput.moveRel(0, 1000, relative=True, )
-            pg.press('g')
+            time.sleep(0.2)
+            pg.keyDown('g')
+            time.sleep(0.2)
+            pg.keyUp('g')
             time.sleep(2)
             pg.click(button='right')
 
@@ -129,27 +133,32 @@ while True:
         except:
             pass
 
-    pg.moveTo(pg.size().width-300,pg.size().height//2, duration=0.5)
+    pg.moveTo(pg.size().width-40,pg.size().height//2, duration=0.5)
     time.sleep(1)
+    for i in range(60):
+        pg.scroll(1)
+        print(i)
     while True:
+        gr = 0
         try:
             try:
-                gr = pg.locateCenterOnScreen("img/m67.PNG", confidence=0.98)
-            except:
-                pass
-            try:
-                gr = pg.locateCenterOnScreen("img/rgd-5.PNG", confidence=0.98)
-            except:
-                pass
+                gr = pg.locateCenterOnScreen("img/m67.PNG", confidence=0.995)
 
-            try:
-                gr = pg.locateCenterOnScreen("img/f-1.PNG", confidence=0.98)
             except:
-                pass
+                try:
+                    gr = pg.locateCenterOnScreen("img/rgd-5.PNG", confidence=0.995)
 
+                except:
+                    try:
+                        gr = pg.locateCenterOnScreen("img/f-1.PNG", confidence=0.995)
 
+                    except:
+                        pass
             pg.keyDown('ctrl')
-            pg.click(gr.x, gr.y)
+            time.sleep(1)
+            pg.moveTo(gr.x, gr.y)
+            pg.click()
+            time.sleep(1)
             pg.keyUp('ctrl')
             time.sleep(1)
             break

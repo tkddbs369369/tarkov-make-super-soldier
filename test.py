@@ -4,39 +4,34 @@ import time
 import pydirectinput
 time.sleep(2)
 
-
-
-for i in range(3):
-    # pg.keyDown('w')
-    # pg.keyDown('space')
-    # pg.keyDown('shift')
-    # time.sleep(0.1)
-    # for i in a:
-    #     pydirectinput.moveRel(1000, 0, relative=True)
-    #     time.sleep(0.001)
-    # pg.keyUp('shift')
-    # pg.keyUp('w')
-    # pg.keyUp('space')
-    # time.sleep(1)
-    # for i in range(1, 11):
-    #     if i % 2 == 0:
-    #         pg.keyDown('w')
-    #         time.sleep(3)
-    #         pg.keyUp('w')
-    #     if i % 2 == 1:
-    #         pg.keyDown('s')
-    #         time.sleep(3)
-    #         pg.keyUp('s')
-    # try:
-    #     _7 = pg.locateCenterOnScreen("img/7.PNG", confidence=0.8)
-    #     break
-    # except:
-    #     pass
-    if i == 2:
-        time.sleep(0.6)
-        pydirectinput.moveRel(0, 1000, relative=True, )
-        pg.press('g')
-        time.sleep(2)
-        pg.click(button='right')
-
-# 시리얼 포트 닫기
+pg.moveTo(pg.size().width-40,pg.size().height//2, duration=0.5)
+time.sleep(1)
+for i in range(10):
+    pg.scroll(1)
+    print(i)
+while True:
+    try:
+        try:
+            gr = pg.locateCenterOnScreen("img/m67.PNG", confidence=0.995)
+            print(gr)
+        except:
+            try:
+                gr = pg.locateCenterOnScreen("img/rgd-5.PNG", confidence=0.995)
+                print(gr)
+            except:
+                try:
+                    gr = pg.locateCenterOnScreen("img/f-1.PNG", confidence=0.995)
+                    print(gr)
+                except:
+                    pass
+        pg.keyDown('ctrl')
+        time.sleep(1)
+        pg.moveTo(gr.x, gr.y)
+        pg.click()
+        pg.keyUp('ctrl')
+        time.sleep(1)
+        break
+    except:
+        for i in range(12):
+            pg.scroll(-1)
+pg.press('Tab')
