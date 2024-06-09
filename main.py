@@ -3,7 +3,10 @@ import pyautogui as pg
 import pydirectinput
 import serial
 time.sleep(2)
+cunt = 1
 while True:
+    print(cunt)
+    cunt+=1
     try:
         time.sleep(1)
         _1 = pg.locateCenterOnScreen("img/1.PNG", confidence=0.8)
@@ -48,10 +51,32 @@ while True:
             break
         except:
             pass
+    try:
+        print(pg.locateOnScreen("part.jpg", confidence=0.7, region=(67, 1357, 266, 4)))
+        pg.keyDown('w')
+        time.sleep(2)
+        pg.keyUp('w')
+        continue
+    except:
+        pass
 
     a = list(range(370))
 
     for i in range(3):
+
+        for tr in range(6):
+            try:
+                print(pg.locateOnScreen("part.jpg", confidence=0.7, region=(67, 1357, 266, 4)))
+                if tr%2 == 0:
+                    pg.keyDown('w')
+                    time.sleep(4)
+                    pg.keyUp('w')
+                else:
+                    pg.keyDown('a')
+                    time.sleep(4)
+                    pg.keyUp('a')
+            except:
+                pass
         pg.keyDown('w')
         pg.keyDown('space')
         pg.keyDown('shift')
@@ -63,6 +88,19 @@ while True:
         pg.keyUp('w')
         pg.keyUp('space')
         time.sleep(1)
+        for tr in range(6):
+            try:
+                print(pg.locateOnScreen("part.jpg", confidence=0.7, region=(67, 1357, 266, 4)))
+                if tr%2 == 0:
+                    pg.keyDown('w')
+                    time.sleep(4)
+                    pg.keyUp('w')
+                else:
+                    pg.keyDown('a')
+                    time.sleep(4)
+                    pg.keyUp('a')
+            except:
+                pass
         for f in range(1, 11):
             if f % 2 == 0:
                 pg.keyDown('w')
@@ -77,7 +115,7 @@ while True:
             break
         except:
             pass
-        print(i)
+
         if i == 2:
             time.sleep(2)
             pydirectinput.moveRel(0, 1000, relative=True, )
@@ -102,6 +140,7 @@ while True:
         try:
             time.sleep(2)
             _71 = pg.locateCenterOnScreen("img/7-1.PNG", confidence=0.8)
+
             try:
                 ac = pg.locateCenterOnScreen("img/7_2.PNG", confidence=0.8)
                 time.sleep(0.5)
@@ -137,23 +176,23 @@ while True:
     time.sleep(1)
     for i in range(60):
         pg.scroll(1)
-        print(i)
+
+
     while True:
         gr = 0
         try:
             try:
                 gr = pg.locateCenterOnScreen("img/m67.PNG", confidence=0.995)
-
             except:
-                try:
-                    gr = pg.locateCenterOnScreen("img/rgd-5.PNG", confidence=0.995)
-
-                except:
-                    try:
-                        gr = pg.locateCenterOnScreen("img/f-1.PNG", confidence=0.995)
-
-                    except:
-                        pass
+                pass
+            try:
+                gr = pg.locateCenterOnScreen("img/rgd-5.PNG", confidence=0.995)
+            except:
+                pass
+            try:
+                gr = pg.locateCenterOnScreen("img/f-1.PNG", confidence=0.995)
+            except:
+                pass
             pg.keyDown('ctrl')
             time.sleep(1)
             pg.moveTo(gr.x, gr.y)
