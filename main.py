@@ -1,7 +1,8 @@
 import time
 import pyautogui as pg
 import pydirectinput
-import serial
+pg.FAILSAFE = False
+
 time.sleep(2)
 cunt = 1
 while True:
@@ -51,84 +52,123 @@ while True:
             break
         except:
             pass
-    try:
-        print(pg.locateOnScreen("part.jpg", confidence=0.7, region=(67, 1357, 266, 4)))
-        pg.keyDown('w')
-        time.sleep(2)
-        pg.keyUp('w')
-        continue
-    except:
-        pass
 
-    a = list(range(370))
-
-    for i in range(3):
-
-        for tr in range(6):
+    cnt = 0
+    def ck():
+        global cnt
+        for tr in range(15):
             try:
                 print(pg.locateOnScreen("part.jpg", confidence=0.7, region=(67, 1357, 266, 4)))
-                if tr%2 == 0:
+                cnt = 1
+                if tr >11 :
+                    pg.keyDown('s')
+                    time.sleep(6)
+                    pg.keyUp('s')
+                elif tr%2 == 0:
                     pg.keyDown('w')
-                    time.sleep(4)
+                    time.sleep(6)
                     pg.keyUp('w')
                 else:
                     pg.keyDown('a')
-                    time.sleep(4)
+                    time.sleep(6)
                     pg.keyUp('a')
             except:
-                pass
+                return
+
+    a = list(range(370))
+    ag = list(range(1,360,60))
+    for i in range(9):
+        pg.keyUp('shift')
+        pg.keyUp('w')
+        pg.keyUp('space')
+        cnt = 0
+        ck()
+        time.sleep(1)
         pg.keyDown('w')
         pg.keyDown('space')
         pg.keyDown('shift')
         time.sleep(0.1)
         for z in a:
+            if z in ag:
+                ck()
+            if cnt:
+                break
             pydirectinput.moveRel(1000, 0, relative=True)
-
+        if cnt:
+            time.sleep(3)
+            continue
         pg.keyUp('shift')
         pg.keyUp('w')
         pg.keyUp('space')
-        time.sleep(1)
-        for tr in range(6):
+        try:
+            _7 = pg.locateCenterOnScreen("img/7.PNG", confidence=0.8)
+            break
+        except:
+            pass
+        if i in [2,5]:
+            print('200초 존버')
+            time.sleep(30)
             try:
-                print(pg.locateOnScreen("part.jpg", confidence=0.7, region=(67, 1357, 266, 4)))
-                if tr%2 == 0:
-                    pg.keyDown('w')
-                    time.sleep(4)
-                    pg.keyUp('w')
-                else:
-                    pg.keyDown('a')
-                    time.sleep(4)
-                    pg.keyUp('a')
+                _7 = pg.locateCenterOnScreen("img/7.PNG", confidence=0.8)
+                break
             except:
                 pass
-        for f in range(1, 11):
-            if f % 2 == 0:
-                pg.keyDown('w')
-                time.sleep(3)
-                pg.keyUp('w')
-            if f % 2 == 1:
-                pg.keyDown('s')
-                time.sleep(3)
-                pg.keyUp('s')
+            time.sleep(30)
+            try:
+                _7 = pg.locateCenterOnScreen("img/7.PNG", confidence=0.8)
+                break
+            except:
+                pass
+
+            time.sleep(30)
+            try:
+                _7 = pg.locateCenterOnScreen("img/7.PNG", confidence=0.8)
+                break
+            except:
+                pass
+            time.sleep(30)
+            try:
+                _7 = pg.locateCenterOnScreen("img/7.PNG", confidence=0.8)
+                break
+            except:
+                pass    
+            time.sleep(30)
+            try:
+                _7 = pg.locateCenterOnScreen("img/7.PNG", confidence=0.8)
+                break
+            except:
+                pass
+            time.sleep(30)
+            try:
+                _7 = pg.locateCenterOnScreen("img/7.PNG", confidence=0.8)
+                break
+            except:
+                pass
+            time.sleep(21)
+
+        else:
+            time.sleep(33)
+
         try:
             _7 = pg.locateCenterOnScreen("img/7.PNG", confidence=0.8)
             break
         except:
             pass
 
-        if i == 2:
-            time.sleep(2)
-            pydirectinput.moveRel(0, 1000, relative=True, )
-            time.sleep(0.2)
-            pg.keyDown('g')
-            time.sleep(0.2)
-            pg.keyUp('g')
-            time.sleep(2)
-            pg.click(button='right')
+
+    print('수류탄 던지기')
+    time.sleep(2)
+    pydirectinput.moveRel(0, 1000, relative=True, )
+    time.sleep(0.2)
+    pg.keyDown('g')
+    time.sleep(0.2)
+    pg.keyUp('g')
+    time.sleep(2)
+    pg.click(button='right')
 
     while True:
         try:
-            time.sleep(2)
+            time.sleep(10)
             _7 = pg.locateCenterOnScreen("img/7.PNG", confidence=0.8)
             pg.click(_7.x, _7.y)
             break
