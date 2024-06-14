@@ -43,15 +43,27 @@ while True:
 
 
 
-
-
+    eror = False
     while True:
         try:
             st = pg.locateCenterOnScreen("img/start.PNG", confidence=0.8)
-            time.sleep(2)
+            time.sleep(1)
             break
         except:
-            pass
+            try:
+                eror = pg.locateCenterOnScreen("img/start.PNG", confidence=0.8)
+                if eror:
+                    print('원인 불명 로비 사출 감지')
+                    break
+                time.sleep(1)
+            except:
+                pass
+    if eror:
+        continue
+
+
+
+
 
     cnt = 0
     def ck():
@@ -77,6 +89,8 @@ while True:
 
     a = list(range(370))
     ag = list(range(1,360,60))
+
+
     for i in range(9):
         pg.keyUp('shift')
         pg.keyUp('w')
@@ -175,7 +189,6 @@ while True:
         except:
             pass
 
-
     while True:
         try:
             time.sleep(2)
@@ -183,23 +196,27 @@ while True:
 
             try:
                 ac = pg.locateCenterOnScreen("img/7_2.PNG", confidence=0.8)
+                print('7_2')
                 time.sleep(0.5)
                 _72 = pg.locateCenterOnScreen("img/no.PNG", confidence=0.8)
+                print('no')
                 pg.click(_72.x, _72.y)
                 time.sleep(0.5)
                 hp = pg.locateCenterOnScreen("img/hp.PNG", confidence=0.8)
+                print('hp')
                 pg.click(hp.x, hp.y)
                 time.sleep(0.5)
                 ac = pg.locateCenterOnScreen("img/ap.PNG", confidence=0.8)
+                print('ap')
                 pg.click(ac.x, ac.y)
                 time.sleep(0.5)
                 ac = pg.locateCenterOnScreen("img/2.PNG", confidence=0.8)
+                print('2')
                 pg.click(ac.x, ac.y)
                 break
             except:
-                pass
-            pg.click(_71.x, _71.y)
-            break
+                pg.click(_71.x, _71.y)
+                break
         except:
             continue
 
