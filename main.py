@@ -51,7 +51,7 @@ while True:
             break
         except:
             try:
-                eror = pg.locateCenterOnScreen("img/start.PNG", confidence=0.8)
+                eror = pg.locateCenterOnScreen("img/1.PNG", confidence=0.8)
                 if eror:
                     print('원인 불명 로비 사출 감지')
                     break
@@ -90,8 +90,8 @@ while True:
     a = list(range(370))
     ag = list(range(1,360,60))
 
-
-    for i in range(9):
+    cont = 0
+    while cont<=8:
         pg.keyUp('shift')
         pg.keyUp('w')
         pg.keyUp('space')
@@ -114,12 +114,13 @@ while True:
         pg.keyUp('shift')
         pg.keyUp('w')
         pg.keyUp('space')
+        cont +=1
         try:
             _7 = pg.locateCenterOnScreen("img/7.PNG", confidence=0.8)
             break
         except:
             pass
-        if i in [2,5]:
+        if cont in [2,5]:
             print('200초 존버')
             time.sleep(30)
             try:
@@ -239,15 +240,15 @@ while True:
         gr = 0
         try:
             try:
-                gr = pg.locateCenterOnScreen("img/m67.PNG", confidence=0.995)
+                gr = pg.locateCenterOnScreen("img/m67.PNG", confidence=0.8)
             except:
                 pass
             try:
-                gr = pg.locateCenterOnScreen("img/rgd-5.PNG", confidence=0.995)
+                gr = pg.locateCenterOnScreen("img/rgd-5.PNG", confidence=0.8)
             except:
                 pass
             try:
-                gr = pg.locateCenterOnScreen("img/f-1.PNG", confidence=0.995)
+                gr = pg.locateCenterOnScreen("img/f-1.PNG", confidence=0.8)
             except:
                 pass
             pg.keyDown('ctrl')

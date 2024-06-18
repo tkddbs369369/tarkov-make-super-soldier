@@ -13,3 +13,4 @@
 - 0.0.0 Everything works
 - 0.0.1 Added code to escape when encountering a grass
 - 0.0.3 bug fix
+- 0.0.4 bug fix
