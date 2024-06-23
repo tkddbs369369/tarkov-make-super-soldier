@@ -1,31 +1,18 @@
-import pydirectinput
+import serial
 import time
-import pyautogui as pg
-time.sleep(1)
-while True:
-    gr = 0
-    try:
-        try:
-            gr = pg.locateCenterOnScreen("img/m67.PNG", confidence=0.8)
-        except:
-            pass
-        try:
-            gr = pg.locateCenterOnScreen("img/rgd-5.PNG", confidence=0.8)
-        except:
-            pass
-        try:
-            gr = pg.locateCenterOnScreen("img/f-1.PNG", confidence=0.8)
-        except:
-            pass
-        pg.keyDown('ctrl')
-        time.sleep(1)
-        pg.moveTo(gr.x, gr.y)
-        pg.click()
-        time.sleep(1)
-        pg.keyUp('ctrl')
-        time.sleep(1)
-        break
-    except:
-        for i in range(12):
-            pg.scroll(-1)
-pg.press('Tab')
+
+# 아두이노와 시리얼 통신 설정
+arduino = serial.Serial('COM5', 9600, timeout=1)  # COM 포트는 환경에 따라 다를 수 있습니다.
+time.sleep(2)  # 아두이노 연결 대기
+
+def move_mouse(x, y):
+    command = f"{x},{y}\n"
+    arduino.write(command.encode())
+    time.sleep(0.1)  # 명령 처리 대기
+
+# 예제 사용
+move_mouse(10, 0)  # x 좌표로 1만큼 이동
+
+
+# 연결 종료
+arduino.close()

@@ -1,11 +1,49 @@
-import time
 import pyautogui as pg
 import pydirectinput
+import serial
+import time
 pg.FAILSAFE = False
 
-time.sleep(2)
+time.sleep(5)
 cunt = 1
+
 while True:
+
+    # arduino = serial.Serial('COM5', 9600, timeout=1)
+    # time.sleep(2)
+    #
+    #
+    # def move_mouse(x, y):
+    #     command = f"{x},{y}\n"
+    #     arduino.write(command.encode())
+    #     time.sleep(0.1)
+    #
+    #
+    #
+    # move_mouse(10, 0)
+    #
+    #
+    # arduino.close()
+
+
+    istal = False
+
+
+    def talsu():
+        global istal
+        if istal:
+            return
+        try:
+            tal = pg.locateCenterOnScreen("img/dehazen.PNG",confidence=0.7)
+            istal = True
+            print('탈진감지')
+            return
+        except:
+            return
+
+
+
+
     print(cunt)
     cunt+=1
     try:
@@ -92,6 +130,7 @@ while True:
 
     cont = 0
     while cont<=8:
+        talsu()
         pg.keyUp('shift')
         pg.keyUp('w')
         pg.keyUp('space')
@@ -162,7 +201,7 @@ while True:
             time.sleep(21)
 
         else:
-            time.sleep(33)
+            time.sleep(27)
 
         try:
             _7 = pg.locateCenterOnScreen("img/7.PNG", confidence=0.8)
@@ -262,4 +301,42 @@ while True:
         except:
             for i in range(12):
                 pg.scroll(-1)
+    if istal:
+        pg.moveTo(pg.size().width - 40, pg.size().height // 2, duration=0.5)
+        time.sleep(1)
+        for i in range(60):
+            pg.scroll(1)
+        while True:
+
+            time.sleep(1)
+            try:
+                water = 0
+                mak = 0
+                sa = 0
+                bap = 0
+
+                water = pg.locateCenterOnScreen("img/water.PNG", confidence=0.8)
+                pg.moveTo(water.x, water.y)
+                pg.rightClick()
+                time.sleep(1)
+                sa = pg.locateCenterOnScreen("img/sa.PNG", confidence=0.8)
+                pg.moveTo(sa.x, sa.y)
+                pg.click()
+
+                sa = 0
+
+                bap = pg.locateCenterOnScreen("img/bap.PNG", confidence=0.8)
+                pg.moveTo(bap.x, bap.y)
+                pg.rightClick()
+                time.sleep(1)
+                sa = pg.locateCenterOnScreen("img/sa.PNG", confidence=0.8)
+                pg.moveTo(sa.x, sa.y)
+                pg.click()
+                time.sleep(1)
+                break
+            except:
+                for i in range(12):
+                    pg.scroll(-1)
+
+
     pg.press('Tab')

@@ -1,5 +1,6 @@
 # IMPORTANT
 - The creator is not responsible for anything. All responsibility lies with the user.
+- Only works at 2560x1440 resolution
 
 # how to use
 - Step 1: Put a single grenade in your pouch without equipping any gear. 
@@ -14,3 +15,4 @@
 - 0.0.1 Added code to escape when encountering a grass
 - 0.0.3 bug fix
 - 0.0.4 bug fix
+- 0.0.5 Automatic refill function when water or energy is empty
